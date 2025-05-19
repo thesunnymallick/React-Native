@@ -8,6 +8,7 @@ import React from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import RootNavigation from './layouts/RootNavigation'
 
+
 const App = () => {
   return (
    <NavigationContainer>

@@ -1,17 +1,28 @@
-import {View, Text, StyleSheet, Image, ScrollView, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  ScrollView,
+  TouchableOpacity,
+  SafeAreaView,
+} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {getAllProducts} from '../services/procutsApi';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 
 const Home = () => {
   const [allProducts, setAllProducts] = useState([]);
+  const navigation = useNavigation();
 
-   const navigation=useNavigation();
+  // handle buy now
+  handleBuyNow = ID => {
+    navigation.navigate('PRODUCT_DETAILS', {productID: ID});
+  };
 
-  handleBuyNow=(ID)=>{
-   navigation.navigate("PRODUCT_DETAILS", {productID:ID})
-  }
+  
 
+  // fetch all products
   useEffect(() => {
     const fetchAllProducts = async () => {
       try {
@@ -24,8 +35,14 @@ const Home = () => {
     fetchAllProducts();
   }, []);
 
+
+
+
+
+
   return (
-    <ScrollView>
+    <SafeAreaView>
+      <ScrollView>
       <View style={styles.container}>
         <Text style={styles.title}>Our Products</Text>
 
@@ -39,7 +56,12 @@ const Home = () => {
                 </View>
                 <View style={styles.contentContainer}>
                   <Text style={styles.productPrice}>${item.price}</Text>
-                  <Text numberOfLines={2} ellipsizeMode="tail" style={styles.productTitle}>{item?.title}</Text>
+                  <Text
+                    numberOfLines={2}
+                    ellipsizeMode="tail"
+                    style={styles.productTitle}>
+                    {item?.title}
+                  </Text>
                   <View style={styles.ratingContainer}>
                     {[...Array(5)].map((_, index) => (
                       <Text key={index} style={styles.star}>
@@ -49,19 +71,19 @@ const Home = () => {
                   </View>
                   <View style={styles.buttonContainer}>
                     <TouchableOpacity
-                     onPress={()=>handleBuyNow(item.id)}
-                     style={styles.button}>
+                      onPress={() => handleBuyNow(item.id)}
+                      style={styles.button}>
                       <Text style={styles.buttonText}>Buy Now</Text>
                     </TouchableOpacity>
                   </View>
                 </View>
-
               </View>
             );
           })}
         </View>
       </View>
     </ScrollView>
+    </SafeAreaView>
   );
 };
 
@@ -82,10 +104,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     flexWrap: 'wrap',
-    gap: 20,
+    justifyContent: 'space-between',
   },
   card: {
-    width: 183,
+    width: "47%",
     height: 300,
     flexDirection: 'column',
     backgroundColor: '#FFFF',
@@ -93,7 +115,8 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#D1D1D1',
     overflow: 'hidden',
-    position:"relative"
+    position: 'relative',
+    marginBottom:10,
   },
   productImage: {
     height: '50%',
@@ -129,26 +152,26 @@ const styles = StyleSheet.create({
     marginRight: 2,
   },
 
-  buttonContainer:{
-    position:"absolute",
-    top:105,
-    left:10,
-  
-    width:"100%"
+  buttonContainer: {
+    position: 'absolute',
+    top: 105,
+    left: 10,
+
+    width: '100%',
   },
 
-  button:{
-    width:"100%",
-    padding:5,
-    borderWidth:1,
-    borderColor:"#D1D1D1",
-    borderRadius:10,
+  button: {
+    width: '100%',
+    padding: 5,
+    borderWidth: 1,
+    borderColor: '#D1D1D1',
+    borderRadius: 10,
   },
-  buttonText:{
-    fontSize:16,
-    fontWeight:500,
-    textAlign:"center"
-  }
+  buttonText: {
+    fontSize: 16,
+    fontWeight: 500,
+    textAlign: 'center',
+  },
 });
 
 export default Home;
