@@ -32,7 +32,7 @@ const TabNavigation = () => {
         ),
       }}
        />
-      <BottomTab.Screen name="Conatct" component={Contact}
+      <BottomTab.Screen name="Contact" component={Contact}
       options={{
         tabBarIcon: ({color, size}) => (
           <Icon name="call-outline" size={size} color={color} />

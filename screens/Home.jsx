@@ -10,6 +10,7 @@ import {
 import React, {useEffect, useState} from 'react';
 import {getAllProducts} from '../services/procutsApi';
 import {useNavigation} from '@react-navigation/native';
+import Header from '../components/Header';
 
 const Home = () => {
   const [allProducts, setAllProducts] = useState([]);
@@ -42,9 +43,10 @@ const Home = () => {
 
   return (
     <SafeAreaView>
+      <Header title={"Our Products"}/>
       <ScrollView>
       <View style={styles.container}>
-        <Text style={styles.title}>Our Products</Text>
+
 
         <View style={styles.productContainer}>
           {allProducts.map(item => {
@@ -82,7 +84,7 @@ const Home = () => {
           })}
         </View>
       </View>
-    </ScrollView>
+      </ScrollView>
     </SafeAreaView>
   );
 };

@@ -7,12 +7,14 @@ import React from 'react'
 // import CaroselCom from './components/CaroselCom'
 import { NavigationContainer } from '@react-navigation/native'
 import RootNavigation from './layouts/RootNavigation'
+import DrawerNavigation from './navigation/DrawerNavigation'
 
 
 const App = () => {
   return (
    <NavigationContainer>
-    <RootNavigation/>
+    {/* <RootNavigation/> */}
+    <DrawerNavigation/>
    </NavigationContainer>
   )
 }
