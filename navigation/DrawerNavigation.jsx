@@ -6,6 +6,7 @@ import About from '../screens/About';
 import Contact from '../screens/Contact';
 import FlatListComponent from '../components/FlatListComponent';
 import SectionList from '../components/SectionListComponent';
+import TouchableComponents from '../components/TouchableComponents';
 
 const DrawerNavigation = () => {
     const Drawer=createDrawerNavigator();
@@ -20,6 +21,7 @@ const DrawerNavigation = () => {
     <Drawer.Screen name="Contact" component={Contact}/>
     <Drawer.Screen name="FlatList" component={FlatListComponent}/>
     <Drawer.Screen name="SectionList" component={SectionList}/>
+    <Drawer.Screen name="Touchable Opacity" component={TouchableComponents}/>
    </Drawer.Navigator>
   )
 }
